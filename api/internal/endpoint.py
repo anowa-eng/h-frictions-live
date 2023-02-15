@@ -26,13 +26,15 @@ class Endpoint:
             data
         ))
         return filtered_data[0] if len(ids) == 1 else filtered_data
+    def all(self):
+        return self.load_data()
     def update(self, ids, new_data):
         data = self.load_data()
         for id in ids:
-            data[id] = {**new_data, 'id': id}
+            data[id] = {**new_data, 'ID': id}
         data.sync()
     def delete(self, ids):
         data = self.load_data()
         for id in ids:
-            data[id] = new_data
+            del data[id]
         data.sync()
